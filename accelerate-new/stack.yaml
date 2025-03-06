@@ -1,0 +1,25 @@
+resolver: lts-21.7
+
+extra-deps:
+# - ../../accelerate
+# - ../../accelerate-llvm/accelerate-llvm
+# - ../../accelerate-llvm/accelerate-llvm-native
+
+- github: ivogabe/accelerate
+  commit: a6d3c890171f21d9e2f6972db80ba1145c923dfc
+- github: ivogabe/accelerate-llvm
+  commit: 975c9e2494ced12adbd1c4d724ec0a5153b7d139
+  subdirs:
+  - accelerate-llvm
+  - accelerate-llvm-native
+- github: llvm-hs/llvm-hs
+  commit: e4b3cfa47e72f094ab109884f18acfc666b0fb7d  # llvm-15
+  subdirs:
+    - llvm-hs
+    - llvm-hs-pure
+- github: msakai/haskell-MIP
+  commit: 4295aa21a24a30926b55770c55ac00f749fb8a39
+  subdirs:
+  - MIP
+- OptDir-0.0.4
+- bytestring-encoding-0.1.2.0
