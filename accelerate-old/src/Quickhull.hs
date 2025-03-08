@@ -58,7 +58,6 @@ quickhullRecursiveThenFlatten runN' =
   -- all Accelerate functions to be compiled.
   initialize' `Prelude.seq` step' `Prelude.seq` concat1 `Prelude.seq` concat2 `Prelude.seq` flat `Prelude.seq`
     \maxDepth input -> unsafePerformIO $ do
-      Prelude.putStrLn "Start"
       let (a, b) = initialize' input
       (a', b') <- goParallel maxDepth a b
       Prelude.return $ concat2 (a', b')
@@ -86,7 +85,7 @@ quickhullRecursiveThenFlatten runN' =
       , (p1, p2) <- indexArray line Z
       = Prelude.return $ fromList (Z :. 2) [p1, p2]
       | maxDepth Prelude.== 0
-      = Prelude.putStrLn "A" Prelude.>> (Prelude.return $ flat state)
+      = Prelude.return $ flat state
       | (a, b) <- step' state = do
         (a', b') <- goParallel (maxDepth - 1) a b
         Prelude.return $ concat1 (a', b')

@@ -22,7 +22,7 @@ main = do
 
   let recursive = quickhullRecursiveThenFlatten CPU.runN
 
-  -- mapM_ (\input -> mapM_ (`testInput` input) [("CPU", CPU.runN quickhull1)]) inputs
+  -- mapM_ (\input -> mapM_ (`testInput` input) [("flat", CPU.runN quickhull1), ("split", CPU.runN quickhull2), ("rec-2", recursive 2), ("rec-5", recursive 5)]) inputs
 
   let variants = [("flat", CPU.runN quickhull1), ("split", CPU.runN quickhull2), ("rec-2", recursive 2), ("rec-5", recursive 5)]
 
