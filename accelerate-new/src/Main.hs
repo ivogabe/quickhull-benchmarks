@@ -22,6 +22,9 @@ main = do
 
   let recursive = quickhullRecursiveThenFlatten CPU.runN
 
+  putStrLn "Recursion depths:"
+  mapM_ (\(name, points) -> putStrLn $ name ++ ": " ++ show (measureRecursionDepth CPU.runN points)) inputs
+
   -- mapM_ (\input -> mapM_ (`testInput` input) [("CPU", CPU.runN quickhull1)]) inputs
 
   -- putStrLn $ A.test @CPU.UniformScheduleFun @CPU.NativeKernel quickhull1

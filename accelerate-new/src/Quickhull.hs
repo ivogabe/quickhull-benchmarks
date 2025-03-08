@@ -89,6 +89,21 @@ quickhullRecursiveThenFlatten runN' =
         (a', b') <- goParallel (maxDepth - 1) a b
         Prelude.return $ concat1 (a', b')
 
+measureRecursionDepth
+  :: (forall a b. (Arrays a, Arrays b) => (Acc a -> Acc b) -> (a -> b))
+  -> Vector Point
+  -> Int
+measureRecursionDepth runN' = go . initialize'
+  where
+    go :: StateFlat -> Int
+    go state
+      | indexArray (condition' state) Z = 1 + go (step' state)
+      | otherwise = 0
+
+    initialize' = runN' initialize
+    step' = runN' stepFlat
+    condition' = runN' $ \(T2 points _) -> unit $ size points /= 0
+
 concatWithoutOverlap :: Acc (Vector Point) -> Acc (Vector Point) -> Acc (Vector Point)
 concatWithoutOverlap a b = generate (I1 $ size a + size b - 1) $ \(I1 idx) ->
   ifThenElse (idx < size a) (a !! idx) (b !! (idx - size a + 1))

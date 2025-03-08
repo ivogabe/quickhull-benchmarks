@@ -6,9 +6,9 @@ extra-deps:
 # - ../../accelerate-llvm/accelerate-llvm-native
 
 - github: ivogabe/accelerate
-  commit: a6d3c890171f21d9e2f6972db80ba1145c923dfc
+  commit: 2524e84dc0dfac61ba1197ba8c4e5d3d99a95937
 - github: ivogabe/accelerate-llvm
-  commit: 975c9e2494ced12adbd1c4d724ec0a5153b7d139
+  commit: c025f0a5c506432e3877b7f3fcbd53cbec4a67e5
   subdirs:
   - accelerate-llvm
   - accelerate-llvm-native
